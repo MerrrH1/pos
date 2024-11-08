@@ -6,10 +6,11 @@ from pos_app.models import (
 class TableRestoSerializer(serializers.ModelSerializer):
     class Meta:
         model = TableResto
-        fields = ('id', 'code', 'name', 'capacity', 'table_status', 'status')
+        fields = ('code', 'name', 'capacity', 'table_status', 'status')
         # fields = "__all__"
 
-class MenuRestoSerializer(serializers.Serializer):
+class MenuRestoSerializer(serializers.ModelSerializer):
     class Meta:
         model = MenuResto
-        fields = ('id', 'code', 'price', 'name', 'category')
+        fields = ('code', 'name', 'category', 'price', 'status')
+        # fields = "__all__"
