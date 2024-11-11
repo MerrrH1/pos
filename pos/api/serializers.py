@@ -26,7 +26,7 @@ class CategorySerializer(serializers.ModelSerializer):
 class TableRestoSerializer(serializers.ModelSerializer):
     class Meta:
         model = TableResto
-        fields = "__all__"
+        fields = '__all__'
 
 class MenuRestoSerializer(serializers.ModelSerializer):
     class Meta:
