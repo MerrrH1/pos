@@ -1,9 +1,9 @@
 from django.contrib import admin
 from pos_app.models import (
-    User, StatusModel, Category, OrderMenuDetail, MenuResto, OrderMenu, Profile, TableResto
+    User, StatusModel, Category, 
+    OrderMenuDetail, MenuResto, OrderMenu, Profile, TableResto
 )
 
-# Register your models here.
 admin.site.register(User)
 admin.site.register(StatusModel)
 admin.site.register(Category)

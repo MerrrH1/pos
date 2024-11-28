@@ -178,7 +178,7 @@ class MenuResto(models.Model):
     name = models.CharField(max_length = 100)
     price = models.DecimalField(max_digits = 10, decimal_places = 2)
     description = models.CharField(max_length = 100, default = " ", null = True, blank = True)
-    image_menu = models.ImageField(default = "default_images/empty.jpg", upload_to = "menu_images/", blank = True, null = True)
+    image_menu = models.ImageField(default = "/media/default_images/empty.jpg", upload_to = "menu_images/", blank = True, null = True)
     category = models.ForeignKey(Category, related_name = "category_menu", blank = True, null = True, on_delete = models.SET_NULL)
     menu_status = models.CharField(max_length = 15, choices = status_menu_choices, default = "Ada")
     status = models.CharField(max_length = 15, choices = status_choices, default = "Aktif")

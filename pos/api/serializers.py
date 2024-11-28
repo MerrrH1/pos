@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from pos_app.models import (
-    User, Category, OrderMenuDetail, MenuResto, StatusModel, OrderMenu, Profile, TableResto
+    User, Category, StatusModel, Profile, TableResto,
+    OrderMenuDetail, MenuResto, OrderMenu
 )
 
 class UserSerializer(serializers.ModelSerializer):
@@ -31,7 +32,7 @@ class TableRestoSerializer(serializers.ModelSerializer):
 class MenuRestoSerializer(serializers.ModelSerializer):
     class Meta:
         model = MenuResto
-        fields = "__all__"
+        fields = ('code', 'name', 'price', 'description', 'image_menu', 'menu_status', 'status')
 
 class OrderMenuSerializer(serializers.ModelSerializer):
     class Meta:

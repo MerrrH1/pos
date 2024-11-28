@@ -2,11 +2,13 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, permissions
 from pos_app.models import (
-    User, Category, OrderMenuDetail, MenuResto, StatusModel, OrderMenu, Profile, TableResto
+    User, Category, StatusModel, Profile, TableResto,
+    OrderMenuDetail, MenuResto, OrderMenu
 )
 from api.serializers import (
-    UserSerializer, CategorySerializer, OrderMenuDetailSerializer, MenuRestoSerializer, StatusModelSerializer,
-    OrderMenuSerializer, ProfileSerializer, TableRestoSerializer
+    UserSerializer, CategorySerializer, ProfileSerializer, TableRestoSerializer,
+    OrderMenuDetailSerializer, MenuRestoSerializer, StatusModelSerializer,
+    OrderMenuSerializer
 )
 
 class TableRestoListApiView(APIView):
@@ -186,3 +188,28 @@ class CategoryDetailApiView(APIView):
             'message' : 'Data Deleted Successfully...'
         }
         return Response(response, status = status.HTTP_200_OK)
+
+class MenuRestoListApiView(APIView):
+    def get(self, request, *args, **kwargs):
+        menu_restos = MenuResto.objects.all()
+        serializer = MenuRestoSerializer(menu_restos, many = True)
+        return Response(serializer.data, status = status.HTTP_200_OK)
+    
+    def post(self, request, *args, **kwargs):
+        data = {
+            'name' : request.data.get('name'),
+            'price' : request.data.get('price'),
+            'description' : request.data.get('description'),
+            'image_menu' : request.data.get('image_menu'),
+            'category' : request.data.get('category'),
+        }
+        serializer = MenuRestoSerializer(data = data)
+        if serializer.is_valid():
+            serializer.save()
+            response = {
+                'status' : status.HTTP_201_CREATED,
+                'message' : 'Data Created Successfully...',
+                'data' : serializer.data
+            }
+            return Response(response, status = status.HTTP_201_CREATED)
+        return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
