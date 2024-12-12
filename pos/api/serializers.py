@@ -27,7 +27,7 @@ class CategorySerializer(serializers.ModelSerializer):
 class TableRestoSerializer(serializers.ModelSerializer):
     class Meta:
         model = TableResto
-        fields = '__all__'
+        fields = ('code', 'name', 'capacity', 'table_status', 'status')
 
 class MenuRestoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -37,7 +37,7 @@ class MenuRestoSerializer(serializers.ModelSerializer):
 class OrderMenuSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderMenu
-        fields = "__all__"
+        fields = ('code', 'order_status', 'total_order', 'tax_order', 'total_payment', 'payment', 'changed', 'status', 'table_resto', 'cashier', 'waitress')
 
 class OrderMenuDetailSerializer(serializers.ModelSerializer):
     model = OrderMenuDetail
